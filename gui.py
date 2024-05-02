@@ -36,7 +36,7 @@ import pyautogui
 #### Create Window ####
 #######################
 
-tool_version = "1.0.0"
+tool_version = "1.0.1"
 
 root = customtkinter.CTk()
 root.title(f"Fayaz's Settings {tool_version} for Paper Mario: The Origami King")
