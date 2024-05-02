@@ -28,6 +28,7 @@ from visuals import *
 from compress import *
 from extract import *
 from download import *
+import pyautogui
 
 
 
@@ -50,8 +51,9 @@ windowtitle = customtkinter.CTkLabel(master=root, font=(CTkFont, 20), text="Faya
 ###############################################
 
 # Visuals
-ar_numerator = StringVar(value="16")
-ar_denominator = StringVar(value="9")
+screen_width, screen_height = pyautogui.size()
+ar_numerator = StringVar(value=f"{screen_width}")
+ar_denominator = StringVar(value=f"{screen_height}")
 do_graphics_increase = BooleanVar(value=True)
 do_60fps = BooleanVar(value=True)
 do_120fps = BooleanVar(value=False)
@@ -355,24 +357,24 @@ def pack_widgets():
     fps60_checkbox.pack(padx=5, pady=5)
     fps120_checkbox.pack(padx=10, pady=10)
     
-    image_label.pack()
+    # image_label.pack()
 
-    image_layout_label.pack(padx=5, pady=5)
+    # image_layout_label.pack(padx=5, pady=5)
     
-    controller_type_label.pack()
-    controller_type_dropdown.pack()
+    # controller_type_label.pack()
+    # controller_type_dropdown.pack()
 
-    if controller_type.get() == "Colored Dualsense":
-        controller_color_label.pack()
-        controller_color_dropdown.pack()
+    # if controller_type.get() == "Colored Dualsense":
+    #     controller_color_label.pack()
+    #     controller_color_dropdown.pack()
     
-    if controller_type.get() == "Xbox" or controller_type.get() == "Playstation":
-        button_color_label.pack()
-        button_color_dropdown.pack()
+    # if controller_type.get() == "Xbox" or controller_type.get() == "Playstation":
+    #     button_color_label.pack()
+    #     button_color_dropdown.pack()
 
-    if controller_type.get() == "Xbox" or controller_type.get() == "Playstation" or controller_type.get() == "Steam Deck":
-        button_layout_label.pack()
-        button_layout_dropdown.pack()
+    # if controller_type.get() == "Xbox" or controller_type.get() == "Playstation" or controller_type.get() == "Steam Deck":
+    #     button_layout_label.pack()
+    #     button_layout_dropdown.pack()
 
     content_frame.pack(padx=10, pady=10)
 
@@ -418,20 +420,20 @@ def forget_packing():
     fps60_checkbox.pack_forget()
     fps120_checkbox.pack_forget()
 
-    image_label.pack_forget()
-    image_layout_label.pack_forget()
+    # image_label.pack_forget()
+    # image_layout_label.pack_forget()
     
-    controller_type_label.pack_forget()
-    controller_type_dropdown.pack_forget()
+    # controller_type_label.pack_forget()
+    # controller_type_dropdown.pack_forget()
     
-    controller_color_label.pack_forget()
-    controller_color_dropdown.pack_forget()
+    # controller_color_label.pack_forget()
+    # controller_color_dropdown.pack_forget()
     
-    button_color_label.pack_forget()
-    button_color_dropdown.pack_forget()
+    # button_color_label.pack_forget()
+    # button_color_dropdown.pack_forget()
 
-    button_layout_label.pack_forget()
-    button_layout_dropdown.pack_forget()
+    # button_layout_label.pack_forget()
+    # button_layout_dropdown.pack_forget()
 
     content_frame.pack_forget()
 
@@ -478,140 +480,140 @@ notebook = customtkinter.CTkTabview(root, width=10, height=10)
 
 notebook.add("Visuals")
 
-console_label3= customtkinter.CTkLabel(master=notebook.tab("Visuals"), text='Enter Aspect Ratio or Screen Dimensions (ex: 21:9 or 3440x1440):')
+console_label3= customtkinter.CTkLabel(master=notebook.tab("Visuals"), text=f'Aspect Ratio: (Auto-Deteced as {screen_width} x {screen_height}):')
 
 frame = customtkinter.CTkFrame(master=notebook.tab("Visuals"))
 
 numerator_entry = customtkinter.CTkEntry(frame, textvariable=ar_numerator)
 numerator_entry.configure(text_color='gray')
-numerator_entry.bind("<FocusIn>", lambda event: handle_focus_in(numerator_entry, "16"))
-numerator_entry.bind("<FocusOut>", lambda event: handle_focus_out(numerator_entry, "16"))
+numerator_entry.bind("<FocusIn>", lambda event: handle_focus_in(numerator_entry, f"{screen_width}"))
+numerator_entry.bind("<FocusOut>", lambda event: handle_focus_out(numerator_entry, f"{screen_width}"))
 aspect_ratio_divider= customtkinter.CTkLabel(frame, text=":")
 denominator_entry = customtkinter.CTkEntry(frame, textvariable=ar_denominator)
 denominator_entry.configure(text_color='gray')
-denominator_entry.bind("<FocusIn>", lambda event: handle_focus_in(denominator_entry, "9"))
-denominator_entry.bind("<FocusOut>", lambda event: handle_focus_out(denominator_entry, "9"))
+denominator_entry.bind("<FocusIn>", lambda event: handle_focus_in(denominator_entry, f"{screen_height}"))
+denominator_entry.bind("<FocusOut>", lambda event: handle_focus_out(denominator_entry, f"{screen_height}"))
 
 graphics_checkbox = customtkinter.CTkCheckBox(master=notebook.tab("Visuals"), text="Use 1920x1080", variable=do_graphics_increase)
 fps60_checkbox = customtkinter.CTkCheckBox(master=notebook.tab("Visuals"), text="60 FPS", variable=do_60fps)
 fps120_checkbox = customtkinter.CTkCheckBox(master=notebook.tab("Visuals"), text="120 FPS (Expiremental)", variable=do_120fps)
 
-##########################
-####### Controller #######
-##########################
+# ##########################
+# ####### Controller #######
+# ##########################
 
-notebook.add("Controller")
+# notebook.add("Controller")
 
-def update_image(*args):
-    selected_controller_type = controller_type.get().lower()
-    selected_controller_color = controller_color.get().lower()
-    selected_button_layout = button_layout.get().lower()
+# def update_image(*args):
+#     selected_controller_type = controller_type.get().lower()
+#     selected_controller_color = controller_color.get().lower()
+#     selected_button_layout = button_layout.get().lower()
 
-    global image_name
-    if selected_controller_type == "colored dualsense":
-        if selected_controller_color:
-            image_name = f"dual_{selected_controller_color}.jpeg"
-        else:
-            image_name = f"dual_black.jpeg"
-    elif selected_controller_type == "xbox":
-        if selected_button_layout:
-            image_name = f"xbox_{selected_button_layout}.jpeg"
-        else:
-            image_name = f"xbox_normal.jpeg"
-    elif selected_controller_type == "playstation":
-        if selected_button_layout:
-            image_name = f"dual_{selected_button_layout}.jpeg"
-        else:
-            image_name = f"dual_normal.jpeg"
-    elif selected_controller_type == "switch":
-        image_name = "switch_normal.jpeg"
-    elif selected_controller_type == "steam deck":
-        if selected_button_layout == "normal":
-            image_name = "deck_normal.jpeg"
-        else:
-            image_name = "deck_western.jpeg"
-    elif selected_controller_type == "steam":
-        image_name = "steam_pe.jpeg"
-    else:
-        image_name = "switch_normal.jpeg"
+#     global image_name
+#     if selected_controller_type == "colored dualsense":
+#         if selected_controller_color:
+#             image_name = f"dual_{selected_controller_color}.jpeg"
+#         else:
+#             image_name = f"dual_black.jpeg"
+#     elif selected_controller_type == "xbox":
+#         if selected_button_layout:
+#             image_name = f"xbox_{selected_button_layout}.jpeg"
+#         else:
+#             image_name = f"xbox_normal.jpeg"
+#     elif selected_controller_type == "playstation":
+#         if selected_button_layout:
+#             image_name = f"dual_{selected_button_layout}.jpeg"
+#         else:
+#             image_name = f"dual_normal.jpeg"
+#     elif selected_controller_type == "switch":
+#         image_name = "switch_normal.jpeg"
+#     elif selected_controller_type == "steam deck":
+#         if selected_button_layout == "normal":
+#             image_name = "deck_normal.jpeg"
+#         else:
+#             image_name = "deck_western.jpeg"
+#     elif selected_controller_type == "steam":
+#         image_name = "steam_pe.jpeg"
+#     else:
+#         image_name = "switch_normal.jpeg"
 
-    global controller_layout_label
+#     global controller_layout_label
 
-    if selected_button_layout == "elden ring":
-        image_name = image_name.replace("elden ring", "elden")
-        if selected_controller_type == "playstation":
-            controller_layout_label = elden_dual_layout
-        else:
-            controller_layout_label = elden_xbox_layout
-    elif selected_button_layout == "western":
-        if selected_controller_type == "playstation":
-            controller_layout_label = western_dual_layout
-        else:
-            controller_layout_label = western_xbox_layout
-    elif selected_button_layout == "PE":
-        if selected_controller_type == "playstation":
-            controller_layout_label = PE__dual_layout
-        else:
-            controller_layout_label = PE__xbox_layout
-    elif selected_button_layout == "normal":
-        if selected_controller_type == "playstation":
-            controller_layout_label = normal__dual_layout
-        else:
-            controller_layout_label = normal__xbox_layout
+#     if selected_button_layout == "elden ring":
+#         image_name = image_name.replace("elden ring", "elden")
+#         if selected_controller_type == "playstation":
+#             controller_layout_label = elden_dual_layout
+#         else:
+#             controller_layout_label = elden_xbox_layout
+#     elif selected_button_layout == "western":
+#         if selected_controller_type == "playstation":
+#             controller_layout_label = western_dual_layout
+#         else:
+#             controller_layout_label = western_xbox_layout
+#     elif selected_button_layout == "PE":
+#         if selected_controller_type == "playstation":
+#             controller_layout_label = PE__dual_layout
+#         else:
+#             controller_layout_label = PE__xbox_layout
+#     elif selected_button_layout == "normal":
+#         if selected_controller_type == "playstation":
+#             controller_layout_label = normal__dual_layout
+#         else:
+#             controller_layout_label = normal__xbox_layout
 
-    if selected_controller_type != "playstation" and selected_controller_type != "xbox":
-        controller_layout_label = ""
+#     if selected_controller_type != "playstation" and selected_controller_type != "xbox":
+#         controller_layout_label = ""
 
-    image_layout_label.configure(text=controller_layout_label)
-    image_layout_label.update()
+#     image_layout_label.configure(text=controller_layout_label)
+#     image_layout_label.update()
 
-    image_path = os.path.join(script_directory, "images", image_name)
+#     image_path = os.path.join(script_directory, "images", image_name)
     
-    # Load and display the image
-    image = Image.open(image_path)
-    photo = customtkinter.CTkImage(image, size=(500,300))
-    image_label.configure(image=photo)
-    image_label.image = photo  # Keep a reference to the photo to prevent garbage collection
-    image_label.update()
+#     # Load and display the image
+#     image = Image.open(image_path)
+#     photo = customtkinter.CTkImage(image, size=(500,300))
+#     image_label.configure(image=photo)
+#     image_label.image = photo  # Keep a reference to the photo to prevent garbage collection
+#     image_label.update()
 
-def select_controller(*args):
-    def change_menu(list, option_menu, option_var):
-        option_menu.configure(values=list)
-        option_var.set(list[0])
+# def select_controller(*args):
+#     def change_menu(list, option_menu, option_var):
+#         option_menu.configure(values=list)
+#         option_var.set(list[0])
     
-    controller = controller_type.get()
+#     controller = controller_type.get()
 
-    if controller == "Xbox" or controller == "Playstation":
-        change_menu(full_button_layouts, button_layout_dropdown, button_layout)
-    elif controller == "Steam Deck":
-        change_menu(deck_button_layouts, button_layout_dropdown, button_layout) 
+#     if controller == "Xbox" or controller == "Playstation":
+#         change_menu(full_button_layouts, button_layout_dropdown, button_layout)
+#     elif controller == "Steam Deck":
+#         change_menu(deck_button_layouts, button_layout_dropdown, button_layout) 
 
-    if controller == "Colored Dualsense":
-        change_menu(dualsense_colors, controller_color_dropdown, controller_color)
+#     if controller == "Colored Dualsense":
+#         change_menu(dualsense_colors, controller_color_dropdown, controller_color)
 
-    if controller == "Xbox" or controller == "Playstation":
-        change_menu(colored_button_colors, button_color_dropdown, button_color)
+#     if controller == "Xbox" or controller == "Playstation":
+#         change_menu(colored_button_colors, button_color_dropdown, button_color)
 
-    update_image()
-    repack_widgets()
+#     update_image()
+#     repack_widgets()
 
-image_label= customtkinter.CTkLabel(master=notebook.tab("Controller"), text="")
+# image_label= customtkinter.CTkLabel(master=notebook.tab("Controller"), text="")
 
-image_layout_label= customtkinter.CTkLabel(master=notebook.tab("Controller"), text=f"{controller_layout_label}", font=("Roboto", 11, "bold"))
+# image_layout_label= customtkinter.CTkLabel(master=notebook.tab("Controller"), text=f"{controller_layout_label}", font=("Roboto", 11, "bold"))
 
-controller_type_label= customtkinter.CTkLabel(master=notebook.tab("Controller"), text="Controller Type:")
-controller_type_dropdown = customtkinter.CTkOptionMenu(master=notebook.tab("Controller"), variable=controller_type, values=controller_types, command=select_controller)
+# controller_type_label= customtkinter.CTkLabel(master=notebook.tab("Controller"), text="Controller Type:")
+# controller_type_dropdown = customtkinter.CTkOptionMenu(master=notebook.tab("Controller"), variable=controller_type, values=controller_types, command=select_controller)
 
-controller_color_label= customtkinter.CTkLabel(master=notebook.tab("Controller"), text="Controller Color:")
-controller_color_dropdown = customtkinter.CTkOptionMenu(master=notebook.tab("Controller"), variable=controller_color, values=dualsense_colors, command=update_image)
+# controller_color_label= customtkinter.CTkLabel(master=notebook.tab("Controller"), text="Controller Color:")
+# controller_color_dropdown = customtkinter.CTkOptionMenu(master=notebook.tab("Controller"), variable=controller_color, values=dualsense_colors, command=update_image)
 
-button_color_label= customtkinter.CTkLabel(master=notebook.tab("Controller"), text="Button Color:")
-button_color_dropdown = customtkinter.CTkOptionMenu(master=notebook.tab("Controller"), variable=button_color, values=colored_button_colors, command=update_image)
+# button_color_label= customtkinter.CTkLabel(master=notebook.tab("Controller"), text="Button Color:")
+# button_color_dropdown = customtkinter.CTkOptionMenu(master=notebook.tab("Controller"), variable=button_color, values=colored_button_colors, command=update_image)
 
-button_layout_label= customtkinter.CTkLabel(master=notebook.tab("Controller"), text="Button Layout:")
-button_layout_dropdown = customtkinter.CTkOptionMenu(master=notebook.tab("Controller"), variable=button_layout, values=full_button_layouts, command=update_image)
+# button_layout_label= customtkinter.CTkLabel(master=notebook.tab("Controller"), text="Button Layout:")
+# button_layout_dropdown = customtkinter.CTkOptionMenu(master=notebook.tab("Controller"), variable=button_layout, values=full_button_layouts, command=update_image)
 
-notebook.delete("Controller") # delete this line to readd controller options
+# notebook.delete("Controller") # delete this line to readd controller options
 
 ###################
 ####### HUD #######
@@ -669,7 +671,7 @@ credits_label = ClickableLabel(master=notebook.tab("Credits"), text=
 
 pack_widgets()
 
-select_controller()
-update_image()
+# select_controller()
+# update_image()
 
 root.mainloop()
