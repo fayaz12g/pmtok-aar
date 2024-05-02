@@ -9,17 +9,15 @@ def pmtok_patch(patch_folder, ratio_value, scaling_factor, visual_fixes):
     scaling_factor = float(scaling_factor)
     ratio_value = float(ratio_value)
     print(f"The scaling factor is {scaling_factor}.")
-    hex_value = make_hex(ratio_value, 0)
+    hex_value = make_hex(ratio_value, 1)
     hex_value2, hex_value3 = pmtok_hex23(ratio_value)
     version_variables = ["1.0.1"]
     for version_variable in version_variables:
-        file_name = f"main-{version_variable}.pchtxt"
+        file_name = f"{version_variable}.pchtxt"
         file_path = os.path.join(patch_folder, file_name)
 
         if version_variable == "1.0.1":
             nsobidid = "E74395F066FD8CCB51EC17B39B3DA2C8CF520089"
-            replacement_value = "009CF340"
-            replacement2_value = "00A63D5C"
             visual_fix = visual_fixesa
             
 

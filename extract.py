@@ -11,5 +11,8 @@ def pmtok_extract(path):
                     decomp = zstd.ZstdDecompressor()
                     with open(bfres_file_path, 'wb') as bfres_file:
                         decomp.copy_stream(zst_file, bfres_file)
-                print(f"Extracted {zst_file_path} to {bfres_file_path}")
+                # zst_filename = os.path.basename(zst_file_path)
+                bfres_filename = os.path.basename(bfres_file_path)
+                print(f"Extracted {bfres_filename}")
                 os.remove(zst_file_path)
+                # print(f"Deleted {zst_filename}")

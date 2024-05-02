@@ -11,6 +11,8 @@ def pmtok_compress(path):
                     comp = zstd.ZstdCompressor()
                     with open(zst_file_path, 'wb') as zst_file:
                         comp.copy_stream(bfres_file, zst_file)
-                print(f"Compressed {bfres_file_path} to {zst_file_path}")
+                # bfres_filename = os.path.basename(bfres_file_path)
+                zst_filename = os.path.basename(zst_file_path)
+                print(f"Compressed {zst_filename}")
                 os.remove(bfres_file_path)
-                print(f"Deleted {bfres_file_path}")
+                # print(f"Deleted {bfres_filename}")
