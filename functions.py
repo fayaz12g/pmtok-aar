@@ -27,7 +27,7 @@ def pmtok_hex23(num):
     hex_1 = full_hex[:4]
     hex_2 = full_hex[4:]
     asm_1 = f"movz w9, #0x{hex_2}"
-    asm_2 = f"movz w9, #0x{hex_1}, lsl #16"
+    asm_2 = f"movk w9, #0x{hex_1}, lsl #16"
     hex_value2 = asm_to_hex(asm_1)
     hextvalue3 = asm_to_hex(asm_2)
     return hex_value2, hextvalue3
