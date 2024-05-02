@@ -28,6 +28,7 @@ from visuals import *
 from compress import *
 from extract import *
 from download import *
+from script import *
 import pyautogui
 
 
@@ -320,7 +321,7 @@ def create_mod():
     pmtok_extract(ui_folder)
 
     # Perform Pane Strecthing
-    # pmtok_hud(str(ratio_value), HUD_pos, text_folder)
+    pmtok_hud(str(ratio_value), HUD_pos, ui_folder)
 
     # Compress layout folders and delete them
     pmtok_compress(ui_folder)
