@@ -1,7 +1,7 @@
 import os
 import zstandard as zstd
 
-def extract_zst_files(path):
+def pmtok_extract(path):
     for root, dirs, files in os.walk(path):
         for file in files:
             if file.endswith('.bfres.zst'):
@@ -12,7 +12,4 @@ def extract_zst_files(path):
                     with open(bfres_file_path, 'wb') as bfres_file:
                         decomp.copy_stream(zst_file, bfres_file)
                 print(f"Extracted {zst_file_path} to {bfres_file_path}")
-
-# Example usage:
-path = r'C:\Users\fayaz\Desktop\OrigamiKingstuff\ui'
-extract_zst_files(path)
+                os.remove(zst_file_path)
