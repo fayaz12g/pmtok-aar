@@ -58,20 +58,20 @@ do_graphics_increase = BooleanVar(value=True)
 do_60fps = BooleanVar(value=True)
 do_120fps = BooleanVar(value=False)
 
-# Controller
-controller_types = ["Switch", "Xbox", "Playstation"]
+# # Controller
+# controller_types = ["Switch", "Xbox", "Playstation"]
 
-full_button_layouts = ["Normal"]
-deck_button_layouts = ["Normal"]
+# full_button_layouts = ["Normal"]
+# deck_button_layouts = ["Normal"]
 
-dualsense_colors = ["Red", "White", "Blue", "Pink", "Purple", "Black"]
+# dualsense_colors = ["Red", "White", "Blue", "Pink", "Purple", "Black"]
 
-colored_button_colors = ["White"]
+# colored_button_colors = ["White"]
 
-controller_type = StringVar(value="Switch")
-button_color = StringVar()
-controller_color = StringVar()
-button_layout = StringVar()
+# controller_type = StringVar(value="Switch")
+# button_color = StringVar()
+# controller_color = StringVar()
+# button_layout = StringVar()
 
 # HUD
 centered_HUD = BooleanVar()
@@ -86,19 +86,18 @@ mod_name_var = StringVar(value="Fayaz's Settings")
 
 input_folder = None
 
-do_custom_ini = False
 zs_file_path = None
 
-image_name = "switch_normal.jpeg"
-controller_layout_label = ""
-normal__xbox_layout = "Normal Layout:  A > B, B > A , X > Y, Y > X"
-PE__xbox_layout = "PE Layout: A > A, B > B, X > X, Y > Y"
-western_xbox_layout = "Western Layout: B > A,  A > B, X > X, Y > Y"
-elden_xbox_layout = "Elden Ring Layout: A > Y, B > B, Y > A,  X > X"
-normal__dual_layout = "Normal Layout:  A > Circle, B > Cross, X > Triangle, Y > Square"
-PE__dual_layout = "PE Layout: B > Circle, A > Cross, Y > Triangle, X > Square"
-western_dual_layout = "Western Layout: B  > Circle,  A > Cross, X > Triangle, Y > Square"
-elden_dual_layout = "Elden Ring Layout: A > Triangle,  B > Square, X > Circle, Y > Cross"
+# image_name = "switch_normal.jpeg"
+# controller_layout_label = ""
+# normal__xbox_layout = "Normal Layout:  A > B, B > A , X > Y, Y > X"
+# PE__xbox_layout = "PE Layout: A > A, B > B, X > X, Y > Y"
+# western_xbox_layout = "Western Layout: B > A,  A > B, X > X, Y > Y"
+# elden_xbox_layout = "Elden Ring Layout: A > Y, B > B, Y > A,  X > X"
+# normal__dual_layout = "Normal Layout:  A > Circle, B > Cross, X > Triangle, Y > Square"
+# PE__dual_layout = "PE Layout: B > Circle, A > Cross, Y > Triangle, X > Square"
+# western_dual_layout = "Western Layout: B  > Circle,  A > Cross, X > Triangle, Y > Square"
+# elden_dual_layout = "Elden Ring Layout: A > Triangle,  B > Square, X > Circle, Y > Cross"
 
 patch_folder = None
 blyt_folder = None
@@ -106,8 +105,8 @@ blyt_folder = None
 script_path = os.path.abspath(__file__)
 script_directory = os.path.dirname(script_path)
 icon_path = os.path.join(script_directory, 'icon.ico')
-dfps_folder = os.path.join(script_directory, "dFPS")
-dfps_ini_folder = os.path.join(script_directory, "customini", "dfps")
+# dfps_folder = os.path.join(script_directory, "dFPS")
+# dfps_ini_folder = os.path.join(script_directory, "customini", "dfps")
 
 root.iconbitmap(icon_path)
 

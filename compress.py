@@ -6,13 +6,13 @@ def pmtok_compress(path):
         for file in files:
             if file.endswith('.bfres'):
                 bfres_file_path = os.path.join(root, file)
-                zst_file_path = bfres_file_path + '.zst'
-                with open(bfres_file_path, 'rb') as bfres_file:
-                    comp = zstd.ZstdCompressor()
-                    with open(zst_file_path, 'wb') as zst_file:
-                        comp.copy_stream(bfres_file, zst_file)
+                output_file = f"{bfres_file_path}.zst"
+                cctx = zstd.ZstdCompressor()
+                with open(bfres_file_path, 'rb') as f_in, open(output_file, 'wb') as f_out:
+                    compressed_data = cctx.compress(f_in.read())
+                    f_out.write(compressed_data)
+                zst_filename = os.path.basename(output_file)
                 # bfres_filename = os.path.basename(bfres_file_path)
-                zst_filename = os.path.basename(zst_file_path)
                 print(f"Compressed {zst_filename}")
                 os.remove(bfres_file_path)
                 # print(f"Deleted {bfres_filename}")

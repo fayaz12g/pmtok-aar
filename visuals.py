@@ -1,5 +1,5 @@
 
-def create_visuals(do_graphics_increase, do_60fps, do_120fps):
+def create_visuals(do_graphics_increase, do_120fps, do_60fps):
 
     graphics = "disabled"
     fps60 = "disabled"
