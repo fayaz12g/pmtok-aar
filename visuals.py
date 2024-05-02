@@ -1,9 +1,9 @@
 
 def create_visuals(do_graphics_increase, do_60fps, do_120fps):
 
-    do_graphics_increase = "disabled"
-    do_60fps = "disabled"
-    do_120fps = "disabled"
+    graphics = "disabled"
+    fps60 = "disabled"
+    fps120 = "disabled"
 
     do_island = False
     
